@@ -19,13 +19,10 @@ public class WebServer {
 
 			//Headers responseHeaders = exchange.getResponseHeaders();
 			exchange.sendResponseHeaders(200, inFile.length());
-		
-			//exchange.sendResponseHeaders(200, response.length());
-			//exchange.getResponseHeaders().add("Content-type","text/html");
 
 			OutputStream outStream  = exchange.getResponseBody();
 			//outStream.write(response.getBytes());
-		
+			Files.copy(inFile.toPath(), outStream);
 			outStream.close();
 	    });
 
