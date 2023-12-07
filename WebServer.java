@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpContext;
 import java.io.OutputStream;
 import java.net.URI;
 import java.io.*;
+import java.nio.file.Files;
 
 public class WebServer {
     public static void main(String[] args) throws IOException {
@@ -21,7 +22,7 @@ public class WebServer {
 			exchange.sendResponseHeaders(200, inFile.length());
 
 			OutputStream outStream  = exchange.getResponseBody();
-			//outStream.write(response.getBytes());
+
 			Files.copy(inFile.toPath(), outStream);
 			outStream.close();
 	    });
